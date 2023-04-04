@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Калькулятор</string>
+    <string name="toast_message">Нөлге бөлуге болмайды</string>
+</resources>

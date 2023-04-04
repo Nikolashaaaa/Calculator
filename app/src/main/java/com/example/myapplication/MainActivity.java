@@ -2,11 +2,23 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class MainActivity extends AppCompatActivity {
+
+    MediaPlayer mediaPlayer; // Audio playback variable
+
+    private AdView mAdView;
 
     String operator = "";
     String oldNumber;
@@ -18,10 +30,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        // Start block code of ad playback
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        // End block code of ad playback
+
+        // Start block code of the music playback
+        mediaPlayer = MediaPlayer.create(this, R.raw.zvuk11);
+        // Link to sound file
+
         editText = findViewById(R.id.editText);
     }
 
     public void clickNumber(View view) {
+        mediaPlayer.start();
         if(isNew)
             editText.setText("");
         isNew = false;
@@ -83,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.BuDot:
                 if (dotIsPresent(number)) {
-                }
+
+                } else
                 if (zeroIsFirst(number)) {
                     number = "0.";
                 }
@@ -127,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void operation(View view) {
+        mediaPlayer.start();
         isNew = true;
         oldNumber = editText.getText().toString();
         switch (view.getId()){
@@ -138,18 +169,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickEqual(View view) {
+        mediaPlayer.start();
         String newNumber = editText.getText().toString();
         Double result = 0.0;
-        switch (operator) {
-            case "-": result = Double.parseDouble(oldNumber) - Double.parseDouble(newNumber); break;
-            case "+": result = Double.parseDouble(oldNumber) + Double.parseDouble(newNumber); break;
-            case "*": result = Double.parseDouble(oldNumber) * Double.parseDouble(newNumber); break;
-            case "/": result = Double.parseDouble(oldNumber) / Double.parseDouble(newNumber); break;
+        if (Double.parseDouble(newNumber) < 0.00000001 && operator == "/"
+                || newNumber.equals("") && operator == "/") {
+
+            Toast.makeText(MainActivity.this, R.string.toast_message, Toast.LENGTH_SHORT).show();
+
+        } else {
+            switch (operator) {
+                case "-":
+                    result = Double.parseDouble(oldNumber) - Double.parseDouble(newNumber);
+                    break;
+                case "+":
+                    result = Double.parseDouble(oldNumber) + Double.parseDouble(newNumber);
+                    break;
+                case "*":
+                    result = Double.parseDouble(oldNumber) * Double.parseDouble(newNumber);
+                    break;
+                case "/":
+                    result = Double.parseDouble(oldNumber) / Double.parseDouble(newNumber);
+                    break;
+            }
+            editText.setText(result + "");
         }
-        editText.setText(result+"");
     }
 
     public void acClick(View view) {
+        mediaPlayer.start();
         editText.setText("0");
         isNew = true;
     }
@@ -171,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickPercent(View view) {
+        mediaPlayer.start();
         if (operator == "") {
             String number = editText.getText().toString();
             double temp = Double.parseDouble(number) / 100;

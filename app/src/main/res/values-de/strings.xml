@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Taschenrechner</string>
+    <string name="toast_message">Kann nicht durch Null dividieren</string>
+</resources>
