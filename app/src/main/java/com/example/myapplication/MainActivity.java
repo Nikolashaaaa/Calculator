@@ -1,18 +1,25 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     String oldNumber;
     Boolean isNew = true;
     EditText editText;
+    Button SaveB, ReadB;
+    TextView textView;
+    private final static String fileName = "test.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +57,64 @@ public class MainActivity extends AppCompatActivity {
         // Link to sound file
 
         editText = findViewById(R.id.editText);
+        textView = (TextView) findViewById(R.id.textView);
+        Button BuRandom = (Button) findViewById(R.id.BuRandom);
+        BuRandom.setOnClickListener(this::clickNumber);
+       BuRandom = findViewById(R.id.BuRandom);
+       BuRandom .setOnClickListener(v -> {
+           RND(1, 10000);
+       });
+        SaveB = (Button) findViewById(R.id.BuSave);
+        SaveB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveData(fileName, editText.getText().toString());
+                Toast.makeText(MainActivity.this, R.string.ToastSave, Toast.LENGTH_SHORT).show();
+            }
+        });
+        ReadB = (Button) findViewById(R.id.BuRead);
+        ReadB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            textView.setText(readData(fileName));
+                Toast.makeText(MainActivity.this, R.string.ToastRead, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public String readData(String fileName) {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(openFileInput(fileName)));
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                return line;
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void saveData (String fileName, String data) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(openFileOutput(fileName, MODE_PRIVATE)));
+            try {
+                writer.write(data);
+                writer.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void RND(int min, int max) {
+        mediaPlayer.start();
+        int random = min + (int)(Math.random() * max);
+        editText.setText("" + random);
     }
 
     public void clickNumber(View view) {
@@ -166,6 +234,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.BuDivide: operator = "/"; break;
             case R.id.BuMultiply: operator = "*"; break;
         }
+     /*   List<Calculation> history = new ArrayList<Calculation>();// history
+        boolean add = history.add(new Calculation(5, 5, Operator.PLUS));
+        int index = 0;
+        history.get(index); */
     }
 
     public void clickEqual(View view) {
@@ -243,4 +315,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+  /*  enum Operator {PLUS,MINUS,DIV,MULT};
+
+    class Calculation {
+        String newNumber = editText.getText().toString();
+        String oldNumber = editText.getText().toString();
+        Operator operator;
+        public Calculation(float op1,float op2,Operator operator){
+            this.oldNumber= String.valueOf(op1);
+            this.newNumber= String.valueOf(op2);
+            this.operator=operator;
+        }
+    } */
 }

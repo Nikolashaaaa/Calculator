@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Calculator</string>
     <string name="toast_message">Can\'t divide by zero</string>
+    <string name="SaveB">Save</string>
+    <string name="RandomB">Random</string>
+    <string name="ToastSave">File saved</string>
+    <string name="ReadB">Read</string>
+    <string name="ToastRead">File read</string>
 </resources>

@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Калькулятор</string>
     <string name="toast_message">На ноль делить нельзя</string>
+    <string name="SaveB">Сохранить</string>
+    <string name="RandomB">Рандом</string>
+    <string name="ToastSave">Файл сохранен</string>
+    <string name="ReadB">Прочитать</string>
+    <string name="ToastRead">Файл прочитан</string>
 </resources>

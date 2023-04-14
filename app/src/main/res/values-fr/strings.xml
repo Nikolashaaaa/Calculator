@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Calculatrice</string>
     <string name="toast_message">Impossible de diviser par zéro</string>
+    <string name="SaveB">Sauvegarder</string>
+    <string name="RandomB">Aléatoire</string>
+    <string name="ToastSave">Fichier enregistré</string>
+    <string name="ReadB">Lire</string>
+    <string name="ToastRead">Fichier lu</string>
 </resources>
