@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,8 +13,7 @@
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="match_parent"
-        android:layout_height="26dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="16dp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="0dp"
         app:adSize="BANNER"
@@ -25,154 +24,144 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="fill_parent"
-        android:layout_height="29dp"
+        android:layout_height="20dp"
+        android:layout_above="@id/buttons_layout"
         android:text="TextView" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="238dp"
-        android:layout_weight="0"
+        android:layout_width="374dp"
+        android:layout_height="235dp"
+        android:layout_above="@id/buttons_layout"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="22dp"
         android:background="@color/white"
-        android:ems="10"
-        android:gravity="right|center"
         android:inputType="textPersonName"
         android:text="0"
-        android:textSize="80dp" />
+        android:textAlignment="textEnd"
+        android:textColor="@color/black"
+        android:textSize="64dp" />
 
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TableRow
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/buttons_layout"
+        android:paddingVertical="16dp">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/BuAC"
                 android:onClick="acClick"
-                android:layout_width="wrap_content"
-                android:layout_marginRight="3dp"
+                android:layout_width="97dp"
+                android:layout_height="72dp"
                 app:cornerRadius="36dp"
-                android:layout_weight="1"
-                android:width="30dp"
-                android:height="67dp"
+                android:layout_marginRight="3dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="AC" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/BuBracket"
-                android:onClick="clickNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="67dp"
-                android:text="(  )"
+                android:id="@+id/BuRandom"
                 android:layout_marginRight="3dp"
-                android:height="67dp"
-                android:width="30dp"
-                app:cornerRadius="36dp" />
+                android:layout_width="120dp"
+                android:layout_height="72dp"
+                app:cornerRadius="36dp"
+                android:backgroundTint="@color/purple_500"
+                android:onClick="clickNumber"
+                android:text="@string/RandomB" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/BuDivide"
                 android:onClick="operation"
-                android:layout_width="wrap_content"
                 android:layout_marginRight="3dp"
                 app:cornerRadius="36dp"
-                android:layout_weight="1"
-                android:width="30dp"
-                android:height="67dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="/" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/BuMultiply"
                 android:onClick="operation"
-                android:layout_width="wrap_content"
                 android:layout_marginRight="3dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 app:cornerRadius="36dp"
-                android:layout_weight="1"
-                android:width="30dp"
-                android:height="67dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="*" />
-        </TableRow>
 
-        <TableRow
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.button.MaterialButton
+            android:layout_height="wrap_content"
+            android:gravity="center">
+                <com.google.android.material.button.MaterialButton
                 android:id="@+id/Bu7"
                 android:onClick="clickNumber"
-                android:layout_width="wrap_content"
                 android:layout_marginRight="3dp"
+                android:layout_width="97dp"
+                android:layout_height="72dp"
                 app:cornerRadius="36dp"
-                android:layout_weight="1"
-                android:width="30dp"
-                android:height="67dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="7" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Bu8"
                 android:onClick="clickNumber"
-                android:layout_width="wrap_content"
                 android:layout_marginRight="3dp"
                 app:cornerRadius="36dp"
-                android:layout_weight="1"
-                android:width="30dp"
-                android:height="67dp"
+                android:layout_width="97dp"
+                android:layout_height="72dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="8" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Bu9"
                 android:onClick="clickNumber"
-                android:layout_width="wrap_content"
                 android:layout_marginRight="3dp"
-                android:layout_weight="1"
+                android:layout_width="97dp"
+                android:layout_height="72dp"
                 app:cornerRadius="36dp"
-                android:width="30dp"
-                android:height="67dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="9" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/BuPercent"
-                android:layout_width="wrap_content"
                 android:layout_marginRight="3dp"
-                android:layout_weight="1"
-                android:width="30dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 app:cornerRadius="36dp"
-                android:height="67dp"
                 android:backgroundTint="@color/purple_500"
                 android:onClick="clickPercent"
                 android:text="%" />
-        </TableRow>
-
-        <TableRow
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Bu4"
                 android:onClick="clickNumber"
-                android:layout_width="wrap_content"
                 android:layout_marginRight="3dp"
-                android:layout_weight="1"
-                android:width="30dp"
+                android:layout_width="97dp"
+                android:layout_height="72dp"
                 app:cornerRadius="36dp"
-                android:height="67dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="4" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Bu5"
                 android:onClick="clickNumber"
-                android:layout_width="wrap_content"
                 android:layout_marginRight="3dp"
-                android:layout_weight="1"
-                android:width="30dp"
-                android:height="67dp"
+                android:layout_width="97dp"
+                android:layout_height="72dp"
                 app:cornerRadius="36dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="5" />
@@ -180,184 +169,140 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Bu6"
                 android:onClick="clickNumber"
-                android:layout_width="wrap_content"
                 android:layout_marginRight="3dp"
-                android:layout_weight="1"
-                android:width="30dp"
+                android:layout_width="97dp"
+                android:layout_height="72dp"
                 app:cornerRadius="36dp"
-                android:height="67dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="6" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/BuPlus"
                 android:onClick="operation"
-                android:layout_width="wrap_content"
                 android:layout_marginRight="3dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 app:cornerRadius="36dp"
-                android:layout_weight="1"
-                android:width="30dp"
-                android:height="67dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="+" />
-        </TableRow>
-
-        <TableRow
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="wrap_content"
+            android:gravity="center">
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Bu1"
                 android:onClick="clickNumber"
-                app:cornerRadius="36dp"
-                android:layout_width="wrap_content"
                 android:layout_marginRight="3dp"
-                android:layout_weight="1"
-                android:width="30dp"
-                android:height="67dp"
+                android:layout_width="97dp"
+                android:layout_height="72dp"
+                app:cornerRadius="36dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="1" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Bu2"
                 android:onClick="clickNumber"
-                android:layout_width="wrap_content"
-                app:cornerRadius="36dp"
                 android:layout_marginRight="3dp"
-                android:layout_weight="1"
-                android:width="30dp"
-                android:height="67dp"
+                android:layout_width="97dp"
+                android:layout_height="72dp"
+                app:cornerRadius="36dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="2" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Bu3"
                 android:onClick="clickNumber"
-                android:layout_width="wrap_content"
                 android:layout_marginRight="3dp"
+                android:layout_width="97dp"
+                android:layout_height="72dp"
                 app:cornerRadius="36dp"
-                android:layout_weight="1"
-                android:width="30dp"
-                android:height="67dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="3" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/BuMinus"
                 android:onClick="operation"
-                android:layout_width="wrap_content"
                 android:layout_marginRight="3dp"
-                android:layout_weight="1"
-                android:width="30dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 app:cornerRadius="36dp"
-                android:height="67dp"
                 android:backgroundTint="@color/purple_500"
                 android:text="-" />
-        </TableRow>
-    </TableLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/BuPlusMinus"
-            android:layout_width="wrap_content"
-            android:layout_marginRight="3dp"
-            android:layout_weight="1"
-            android:width="30dp"
-            android:height="67dp"
-            android:backgroundTint="@color/purple_500"
-            android:onClick="clickNumber"
-            android:text="+/-"
-            app:cornerRadius="36dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/Bu0"
-            android:layout_width="wrap_content"
-            android:layout_marginRight="3dp"
-            android:layout_weight="2"
-            android:width="30dp"
-            android:height="67dp"
-            android:backgroundTint="@color/purple_500"
-            android:onClick="clickNumber"
-            android:text="0"
-            app:cornerRadius="36dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/BuDot"
-            android:layout_width="74dp"
-            android:layout_marginRight="3dp"
-            app:cornerRadius="36dp"
-            android:layout_weight="3"
-            android:width="30dp"
-            android:height="67dp"
-            android:backgroundTint="@color/purple_500"
-            android:onClick="clickNumber"
-            android:text="." />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/BuEqual"
-            android:layout_width="77dp"
-            android:layout_marginRight="3dp"
-            android:layout_weight="3"
-            android:width="30dp"
-            android:height="67dp"
-            android:backgroundTint="@color/purple_500"
-            android:onClick="clickEqual"
-            android:text="="
-            app:cornerRadius="36dp" />
-    </TableRow>
-</LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TableRow
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/BuRandom"
-                android:layout_width="121dp"
+                android:id="@+id/BuPlusMinus"
+                android:layout_width="97dp"
+                android:layout_height="72dp"
                 android:layout_marginRight="3dp"
-                android:layout_weight="2"
-                android:width="30dp"
-                android:height="67dp"
                 android:backgroundTint="@color/purple_500"
                 android:onClick="clickNumber"
-                android:text="@string/RandomB"
+                android:text="+/-"
                 app:cornerRadius="36dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/BuRead"
-                android:layout_width="144dp"
+                android:id="@+id/Bu0"
                 android:layout_marginRight="3dp"
+                android:layout_width="97dp"
+                android:layout_height="72dp"
                 app:cornerRadius="36dp"
-                android:layout_weight="3"
-                android:width="30dp"
-                android:height="67dp"
+                android:backgroundTint="@color/purple_500"
+                android:onClick="clickNumber"
+                android:text="0" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/BuDot"
+                android:layout_marginRight="3dp"
+                android:layout_width="97dp"
+                android:layout_height="72dp"
+                app:cornerRadius="36dp"
+                android:backgroundTint="@color/purple_500"
+                android:onClick="clickNumber"
+                android:text="." />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/BuEqual"
+                android:layout_marginRight="3dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                app:cornerRadius="36dp"
+                android:backgroundTint="@color/purple_500"
+                android:onClick="clickEqual"
+                android:text="="/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/BuSave"
+                android:layout_marginRight="3dp"
+                android:layout_width="180dp"
+                android:layout_height="72dp"
+                app:cornerRadius="36dp"
+                android:backgroundTint="@color/purple_500"
+                android:onClick="clickEqual"
+                android:text="@string/SaveB" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/BuRead"
+                android:layout_marginRight="3dp"
+                android:layout_width="180dp"
+                android:layout_height="72dp"
+                app:cornerRadius="36dp"
                 android:backgroundTint="@color/purple_500"
                 android:onClick="clickNumber"
                 android:text="@string/ReadB" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/BuSave"
-                android:layout_width="134dp"
-                android:layout_marginRight="3dp"
-                app:cornerRadius="36dp"
-                android:layout_weight="3"
-                android:width="30dp"
-                android:height="67dp"
-                android:backgroundTint="@color/purple_500"
-                android:onClick="clickEqual"
-                android:text="@string/SaveB" />
-        </TableRow>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

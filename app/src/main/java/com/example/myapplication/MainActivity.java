@@ -3,6 +3,8 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,12 +15,16 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.material.button.MaterialButton;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer; // Audio playback variable
 
     private AdView mAdView;
-
+    enum Operator {PLUS,MINUS,DIV,MULT};
     String operator = "";
     String oldNumber;
     Boolean isNew = true;
@@ -64,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
        BuRandom .setOnClickListener(v -> {
            RND(1, 10000);
        });
+
         SaveB = (Button) findViewById(R.id.BuSave);
         SaveB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,8 +88,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+//    class Calculation {
+//        float operand1,operand2;
+//        String newNumber = editText.getText().toString();
+//        Operator operator;
+//        public Calculation(String newNumber, String oldNumber,Operator operator){
+//            this.operand1= Float.parseFloat(newNumber);
+//            this.operand2= Float.parseFloat(oldNumber);
+//            this.operator=operator;
+//        }
+//    }
     public String readData(String fileName) {
+        mediaPlayer.start();
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(openFileInput(fileName)));
             String line = "";
@@ -98,17 +115,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void saveData (String fileName, String data) {
+        mediaPlayer.start();
+        String newNumber = editText.getText().toString();
+        List<Calculation> history = new ArrayList<Calculation>();// history
         try {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(openFileOutput(fileName, MODE_PRIVATE)));
+            history.add(new Calculation(Float.parseFloat(newNumber), Float.parseFloat(oldNumber), Operator.PLUS));
             try {
-                writer.write(data);
+                writer.write(history.toString());
                 writer.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (IOException Calculation) {
+                throw new RuntimeException(Calculation);
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+        } catch (FileNotFoundException Calculation) {
+            throw new RuntimeException(Calculation);
         }
+        int index = 0;
+        history.get(index);
     }
 
     private void RND(int min, int max) {
@@ -228,16 +251,13 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer.start();
         isNew = true;
         oldNumber = editText.getText().toString();
+        String newNumber = editText.getText().toString();
         switch (view.getId()){
             case R.id.BuPlus: operator = "+"; break;
             case R.id.BuMinus: operator = "-"; break;
             case R.id.BuDivide: operator = "/"; break;
             case R.id.BuMultiply: operator = "*"; break;
         }
-     /*   List<Calculation> history = new ArrayList<Calculation>();// history
-        boolean add = history.add(new Calculation(5, 5, Operator.PLUS));
-        int index = 0;
-        history.get(index); */
     }
 
     public void clickEqual(View view) {
@@ -315,8 +335,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-  /*  enum Operator {PLUS,MINUS,DIV,MULT};
-
     class Calculation {
         String newNumber = editText.getText().toString();
         String oldNumber = editText.getText().toString();
@@ -326,5 +344,5 @@ public class MainActivity extends AppCompatActivity {
             this.newNumber= String.valueOf(op2);
             this.operator=operator;
         }
-    } */
+    }
 }
